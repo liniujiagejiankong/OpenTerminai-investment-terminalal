@@ -1,0 +1,29 @@
+name: Auto Update AI Anomaly Radar
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # 每天北京时间下午 4 点（UTC 0点）自动运行一次
+  workflow_dispatch: # 允许你在 GitHub 网页上手动随时点击运行
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Run anomaly calculation engine
+        run: python scripts/update_anomalies.py
+
+      - name: Commit and push updated anomalies json
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/anomalies.json
+          git commit -m "chore: auto-update AI anomaly radar data [skip ci]" || exit 0
+          git push
