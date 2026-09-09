@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  // 使用相对路径前缀，彻底解决 GitHub Pages 子路径及大小写导致的 404
-  assetPrefix: './',
+  basePath: '/OpenTerminal-investment-terminalal',
+  assetPrefix: '/OpenTerminal-investment-terminalal/',
   eslint: {
     ignoreDuringBuilds: true,
   },
