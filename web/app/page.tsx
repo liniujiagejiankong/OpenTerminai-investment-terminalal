@@ -1,9 +1,9 @@
-import AnomalyRadar from '../src/components/AnomalyRadar';
+import Terminal from '../components/Terminal';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-950 text-white p-4">
-      <AnomalyRadar />
+    <main className="min-h-screen bg-black text-white">
+      <Terminal />
     </main>
   );
 }
