@@ -4,23 +4,41 @@ import { useEffect, useState } from 'react';
 export default function AnomalyRadar() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // 读取我们刚才放在 data 目录下的异常数据
-    fetch('/OpenTerminal-investment-terminalal/data/anomalies.json')
-      .then((res) => res.json())
+    // Get API URL from environment or use localhost default
+    const apiUrl = typeof window !== 'undefined' 
+      ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000')
+      : 'http://localhost:4000';
+    
+    // Fetch anomaly data from API
+    fetch(`${apiUrl}/api/anomalies`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
         setData(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error('Failed to load anomaly radar data:', err);
+        setError(err.message);
         setLoading(false);
       });
   }, []);
 
   if (loading) {
     return <div style={{ color: '#00ffcc', padding: '20px', fontFamily: 'monospace' }}>LOADING ANOMALY RADAR ENGINE...</div>;
+  }
+
+  if (error) {
+    return <div style={{ color: '#ff6b6b', padding: '20px', fontFamily: 'monospace' }}>ERROR: {error}</div>;
+  }
+
+  if (!data) {
+    return <div style={{ color: '#94a3b8', padding: '20px', fontFamily: 'monospace' }}>No anomaly data available</div>;
   }
 
   return (
@@ -45,7 +63,7 @@ export default function AnomalyRadar() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {data?.top_anomalies?.map((item) => (
-          <div key={item.id} style={{ background: '#111827', border: '1px solid #1f2937', borderRadius: '8px', padding: '16px', display: 'grid', gridTemplateColumns: '60px 1fr 180px', gap: '16px', alignItems: 'center' }}>
+          <div key={item.id} style={{ background: '#111827', border: '1px solid #1f2937', borderRadius: '8px', padding: '16px', display: 'grid', gridTemplateColumns: '60px 1fr 180px', gap: '16px' }}>
             
             {/* 序号与分数 */}
             <div style={{ textAlign: 'center' }}>

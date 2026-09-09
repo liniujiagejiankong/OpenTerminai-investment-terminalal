@@ -1,5 +1,11 @@
+// Get API URL from environment, support both server and client contexts
+const API_URL = typeof window !== 'undefined' 
+  ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000')
+  : (process.env.API_URL || 'http://localhost:4000');
+
 export async function apiGet<T>(path: string): Promise<T> {
-  const res = await fetch(path);
+  const url = `${API_URL}${path}`;
+  const res = await fetch(url);
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
     throw new Error(body.error ?? `HTTP ${res.status}`);
@@ -8,7 +14,8 @@ export async function apiGet<T>(path: string): Promise<T> {
 }
 
 export async function apiPost<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(path, {
+  const url = `${API_URL}${path}`;
+  const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -21,7 +28,8 @@ export async function apiPost<T>(path: string, body: unknown): Promise<T> {
 }
 
 export async function apiDelete(path: string): Promise<void> {
-  const res = await fetch(path, { method: "DELETE" });
+  const url = `${API_URL}${path}`;
+  const res = await fetch(url, { method: "DELETE" });
   if (!res.ok && res.status !== 204) throw new Error(`HTTP ${res.status}`);
 }
 
