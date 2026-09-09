@@ -7,7 +7,7 @@ export default function AnomalyRadar() {
 
   useEffect(() => {
     // 读取我们刚才放在 data 目录下的异常数据
-    fetch('/data/anomalies.json')
+    fetch('/OpenTerminal-investment-terminalal/data/anomalies.json')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
