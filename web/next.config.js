@@ -1,13 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: '/OpenTerminal-investment-terminalal',
-  assetPrefix: '/OpenTerminal-investment-terminalal/',
-  eslint: {
-    ignoreDuringBuilds: true,
+  output: 'standalone',
+  reactStrictMode: true,
+  swcMinify: true,
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.API_URL || 'http://localhost:4000',
   },
-  typescript: {
-    ignoreBuildErrors: true,
+  headers: async () => {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
+      },
+    ];
   },
 };
 

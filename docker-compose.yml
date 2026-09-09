@@ -1,27 +1,53 @@
+version: '3.8'
+
 services:
   api:
     build:
       context: .
       dockerfile: server/Dockerfile
+      args:
+        NODE_ENV: production
+    container_name: openterminal-api
     ports:
       - "4000:4000"
     environment:
+      - NODE_ENV=production
+      - API_PORT=4000
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
     volumes:
       - terminal-data:/app/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   web:
     build:
       context: .
       dockerfile: web/Dockerfile
+      args:
+        NODE_ENV: production
+    container_name: openterminal-web
     ports:
       - "3000:3000"
     environment:
+      - NODE_ENV=production
       - API_URL=http://api:4000
+      - NEXT_PUBLIC_API_URL=http://api:4000
     depends_on:
-      - api
+      api:
+        condition: service_healthy
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 volumes:
   terminal-data:
+    driver: local
