@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/OpenTerminal-investment-terminalal',
-  // 去掉 assetPrefix，避免大小写或多斜杠导致的 404
+  // 使用相对路径前缀，彻底解决 GitHub Pages 子路径及大小写导致的 404
+  assetPrefix: './',
   eslint: {
     ignoreDuringBuilds: true,
   },
