@@ -1,4 +1,4 @@
-import AnomalyRadar from '@/components/AnomalyRadar';
+import AnomalyRadar from '../src/components/AnomalyRadar';
 
 export default function Home() {
   return (
