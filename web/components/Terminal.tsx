@@ -1,4 +1,4 @@
-'use client'; // <--- 必须加在最顶部的第一行
+'use client';
 
 import React, { useState, useEffect } from 'react';
 
@@ -7,6 +7,7 @@ export default function Terminal() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 加上仓库子路径，确保能够精准找到文件
     fetch('/OpenTerminal-investment-terminalal/data/anomalies.json')
       .then((res) => res.json())
       .then((data) => {
@@ -15,7 +16,14 @@ export default function Terminal() {
       })
       .catch((err) => {
         console.error('Error loading anomalies:', err);
-        setLoading(false);
+        // 如果上面这个路径由于环境不同没抓到，可以尝试用相对路径兜底
+        fetch('./data/anomalies.json')
+          .then((res) => res.json())
+          .then((data) => {
+            setAnomalies(data);
+            setLoading(false);
+          })
+          .catch((e) => console.error('Fallback failed:', e));
       });
   }, []);
 
