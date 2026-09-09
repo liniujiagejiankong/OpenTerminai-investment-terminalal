@@ -1,3 +1,5 @@
+'use client'; // <--- 必须加在最顶部的第一行
+
 import React, { useState, useEffect } from 'react';
 
 export default function Terminal() {
@@ -25,7 +27,6 @@ export default function Terminal() {
         <p className="text-yellow-400">LOADING ANOMALY RADAR ENGINE...</p>
       ) : (
         <div className="space-y-2">
-          {/* 这里把原本的 >>> 改成了 &gt;&gt;&gt; 以防语法报错 */}
           <p className="text-cyan-400">&gt;&gt;&gt; Data loaded successfully ({anomalies.length} items found):</p>
           <pre className="bg-gray-900 p-4 rounded border border-green-800 text-xs overflow-x-auto max-h-[600px]">
             {JSON.stringify(anomalies, null, 2)}
