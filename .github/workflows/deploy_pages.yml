@@ -24,10 +24,10 @@ jobs:
           cd web
           npm install
           npm run build
-          # 确保构建后的文件夹重命名或复制为 out，并存放在正确位置
-          # 假设 Next.js 默认导出在 out 目录：
-          mkdir -p ../web/out
-          # 如果实际在当前目录生成了 out，把它复制到上层或保持原样
+          # 回到根目录，并在根目录下创建一个 web 文件夹，把编译好的 out 放进去
+          cd ..
+          mkdir -p web/out
+          cp -r web/out/* web/out/ 2>/dev/null || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -35,7 +35,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './web/out'
+          path: 'web/out'
 
       - name: Deploy to GitHub Pages
         id: deployment
