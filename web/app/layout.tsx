@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* Favicon with basePath support */}
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
