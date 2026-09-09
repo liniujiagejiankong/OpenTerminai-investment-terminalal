@@ -35,8 +35,7 @@ jobs:
       - name: Upload static files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './web/dist' # 指向 web 文件夹底下的打包输出目录（如果你的项目是 Vite，通常是 dist；如果是 Next.js，请告诉我）
-
+          path: './web/out' # 适配 Next.js 静态导出目录
   deploy:
     environment:
       name: github-pages
