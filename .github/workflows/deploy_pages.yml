@@ -26,15 +26,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install and Build
+      - name: Install and Build (inside web folder)
         run: |
+          cd web
           npm install
           npm run build
 
       - name: Upload static files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './web/dist' # 指向 web 文件夹底下的打包输出目录（如果你的项目是 Vite，通常是 dist；如果是 Next.js，请告诉我）
 
   deploy:
     environment:
