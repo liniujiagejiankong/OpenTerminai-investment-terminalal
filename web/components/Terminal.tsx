@@ -1,14 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import getConfig from 'next/config';
 
 export default function Terminal() {
   const [anomalies, setAnomalies] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 加上仓库子路径，确保能够精准找到文件
-    fetch('/OpenTerminal-investment-terminalal/data/anomalies.json')
+    // 获取 Next.js 配置中的 basePath
+    const { publicRuntimeConfig } = getConfig() || {};
+    const basePath = publicRuntimeConfig?.basePath || '/OpenTerminal-investment-terminalal';
+
+    // 使用 basePath 前缀加载数据
+    fetch(`${basePath}/data/anomalies.json`)
       .then((res) => res.json())
       .then((data) => {
         setAnomalies(data);
