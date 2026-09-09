@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-09T12:00:00Z",
+  "updated_at": "2026-09-09T04:37:57Z",
   "top_anomalies": [
     {
       "id": "01",
@@ -10,9 +10,20 @@
       "change": "+18.4%",
       "sigma": "+3.1σ",
       "summary": "HBM价格出现异常变化，AI Server BOM成本和DRAM供应持续紧张。",
-      "chain": ["SK hynix / Micron / Samsung", "Nvidia BOM", "AI Server Cost ↑", "Hyperscaler CapEx ↑"],
-      "beneficiaries": ["SK hynix (+++)", "Micron (+++)", "Samsung (++)"],
-      "risks": ["AI Server OEM 毛利率压缩"]
+      "chain": [
+        "SK hynix / Micron / Samsung",
+        "Nvidia BOM",
+        "AI Server Cost ↑",
+        "Hyperscaler CapEx ↑"
+      ],
+      "beneficiaries": [
+        "SK hynix (+++)",
+        "Micron (+++)",
+        "Samsung (++)"
+      ],
+      "risks": [
+        "AI Server OEM 毛利率压缩"
+      ]
     },
     {
       "id": "02",
@@ -23,9 +34,17 @@
       "change": "-12.5%",
       "sigma": "-2.6σ",
       "summary": "LME库存异常下降，暗示实体需求与宏观预期出现背离。",
-      "chain": ["LME Inventory ↓", "Copper Price Divergence", "China Demand Signal"],
-      "beneficiaries": ["Copper Miners (++)"],
-      "risks": ["Manufacturing Cost Pressure"]
+      "chain": [
+        "LME Inventory ↓",
+        "Copper Price Divergence",
+        "China Demand Signal"
+      ],
+      "beneficiaries": [
+        "Copper Miners (++)"
+      ],
+      "risks": [
+        "Manufacturing Cost Pressure"
+      ]
     },
     {
       "id": "03",
@@ -36,9 +55,19 @@
       "change": "+15 bps",
       "sigma": "+2.2σ",
       "summary": "10Y收益率快速上升，Real Yield走高，对高估值成长股形成压制。",
-      "chain": ["US 10Y Yield ↑", "Real Yield ↑", "USD ↑", "Gold Divergence"],
-      "beneficiaries": ["Banks (+)"],
-      "risks": ["Growth Tech Valuations (-)", "Long Duration Assets (-)"]
+      "chain": [
+        "US 10Y Yield ↑",
+        "Real Yield ↑",
+        "USD ↑",
+        "Gold Divergence"
+      ],
+      "beneficiaries": [
+        "Banks (+)"
+      ],
+      "risks": [
+        "Growth Tech Valuations (-)",
+        "Long Duration Assets (-)"
+      ]
     },
     {
       "id": "04",
@@ -49,9 +78,19 @@
       "change": "+5.2%",
       "sigma": "+2.0σ",
       "summary": "费城半导体指数放量大涨，成交量较均值放大180%，资金加速向AI硬件轮动。",
-      "chain": ["SOX Index ↑", "Volume +180%", "AI Hardware Rotation"],
-      "beneficiaries": ["Nvidia (+++)", "Broadcom (+++)", "Equipment Makers (++)"],
-      "risks": ["Overheated Sentiment"]
+      "chain": [
+        "SOX Index ↑",
+        "Volume +180%",
+        "AI Hardware Rotation"
+      ],
+      "beneficiaries": [
+        "Nvidia (+++)",
+        "Broadcom (+++)",
+        "Equipment Makers (++)"
+      ],
+      "risks": [
+        "Overheated Sentiment"
+      ]
     },
     {
       "id": "05",
@@ -62,9 +101,18 @@
       "change": "+8.9%",
       "sigma": "+1.9σ",
       "summary": "库存超预期消耗，数据中心电力需求激增引发能源端定价重构。",
-      "chain": ["Storage Surprise", "Power / Data Center Demand", "AI Infrastructure Strain"],
-      "beneficiaries": ["Independent Power Producers (++)", "Natural Gas Suppliers (+)"],
-      "risks": ["Data Center OpEx ↑"]
+      "chain": [
+        "Storage Surprise",
+        "Power / Data Center Demand",
+        "AI Infrastructure Strain"
+      ],
+      "beneficiaries": [
+        "Independent Power Producers (++)",
+        "Natural Gas Suppliers (+)"
+      ],
+      "risks": [
+        "Data Center OpEx ↑"
+      ]
     }
   ]
 }
