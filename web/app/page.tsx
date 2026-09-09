@@ -1,9 +1,9 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-const Terminal = dynamic(() => import("../components/Terminal"), { ssr: false });
+import AnomalyRadar from '@/components/AnomalyRadar';
 
 export default function Home() {
-  return <Terminal />;
+  return (
+    <main className="min-h-screen bg-gray-950 text-white p-4">
+      <AnomalyRadar />
+    </main>
+  );
 }
