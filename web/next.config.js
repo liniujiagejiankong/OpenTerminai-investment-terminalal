@@ -6,6 +6,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  publicRuntimeConfig: {
+    basePath: '/OpenTerminal-investment-terminalal',
+  },
 }
 
 module.exports = nextConfig
